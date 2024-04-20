@@ -1,0 +1,75 @@
+{
+  "name": "Getting Started Example",
+  "description": "Build an Extension!",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "options_page": "index.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["js/page-script.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "json/rules_1.json"
+      }
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://leetcode.cn/**"],
+      "js": ["js/content/href.js"]
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage",
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
+    "declarativeNetRequestWithHostAccess",
+    "cookies",
+    "unlimitedStorage",
+    "scripting",
+    "bookmarks",
+    "contextMenus",
+    "notifications",
+    "webNavigation",
+    "clipboardWrite",
+    "declarativeContent",
+    "downloads",
+    "idle",
+    "clipboardRead",
+    "browsingData",
+    "geolocation",
+    "history",
+    "management",
+    "tts",
+    "ttsEngine"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_title": "Default Title",
+    "default_popup": "pages/popup/index.html",
+    "default_icon": {
+      "32": "/images/icon400.png",
+      "48": "/images/icon400.png",
+      "128": "/images/icon400.png",
+      "512": "/images/icon400.png"
+    }
+  },
+  "icons": {
+    "32": "/images/icon400.png",
+    "48": "/images/icon400.png",
+    "128": "/images/icon400.png",
+    "512": "/images/icon400.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; script-src-elem 'self' 'unsafe-inline'",
+    "sandbox": "sandbox allow-scripts"
+  }
+}
