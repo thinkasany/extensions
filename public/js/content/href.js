@@ -7,18 +7,27 @@ const fn = () => {
       if (href.startsWith("/problems/")) {
         console.log(href);
         const text = link.innerText;
-        const match = text.match(/\d+/);
+        let match = text.match(/\d+/);
+        let problemId = Number(match[0])
         let type = "lc";
-        if (href.indexOf("lcci")) {
+        if (href.indexOf("lcci") > -1) { // 程序员面试金典
           type = "lcci";
-        } else if (href.indexOf("lcof")) {
+          match = text.match(/\d+\.\d+/);
+          // 面试题 01.01. 判定字符是否唯一, 去掉零
+          problemId = Number(match[0].split('.').map(Number).join('.'))
+        }
+        if (href.indexOf("lcof") > -1) {
           type = "lcof";
         }
-        if (match) {
-          const newHref = `https://doocs.github.io/leetcode/${type}/${match[0]}`;
+        if (text.startsWith('LCR')) { // 剑指 Offer（专项突破）
+          type = "lcof2";
+        }
+        if (problemId) {
+          const newHref = `https://doocs.github.io/leetcode/${type}/${problemId}`;
           console.log(newHref);
           link.href = newHref;
           link.style.cursor = "pointer";
+          link.style.textDecoration = "underline";
           link.target = "_blank";
         }
       }
