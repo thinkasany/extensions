@@ -29,7 +29,7 @@ const fn = () => {
           link.style.cursor = "pointer";
           link.style.textDecoration = "underline";
           link.target = "_blank";
-          window.addEventListener("click", () => {
+          link.addEventListener("click", () => {
             window.open(newHref, "_blank");
           });
         }
